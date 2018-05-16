@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 설정: 널 값을 넣을 수 있도록 해준다 -->
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+	
+	<typeAliases>
+		<typeAlias alias="Board" type="kr.co.hta.board.vo.Board"/>
+		<typeAlias alias="Book" type="kr.co.hta.board.vo.Book"/>
+		<typeAlias alias="Criteria" type="kr.co.hta.board.vo.Criteria"/>
+	</typeAliases>
+	
+	<!-- <mappers>
+		<mapper resource="META-INF/mybatis/mappers/book.xml"/>
+	</mappers>  -->
+</configuration>

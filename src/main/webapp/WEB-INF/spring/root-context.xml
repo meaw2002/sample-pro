@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
+		<property name="username" value="hta"/>
+		<property name="password" value="zxcv1234"/>
+	</bean>
+	
+	<bean id="cp" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
+		<property name="username" value="hta"/>
+		<property name="password" value="zxcv1234"/>
+	</bean>
+	
+	<!-- jdbc 간편기능이 구현된 JdbcTemplate 빈 등록 -->
+	<bean class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	<!-- 
+		지정된 패키지에 정의된 Dao 인터페이스를 구현한 구현객체를 직접 생성하고, 이 객체를 스프링의 빈으로 등록한다.
+	 -->
+	 <!-- <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="kr.co.hta.board.dao"/>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+	 </bean> -->
+	 
+	 <!-- Autowire 애노테이션 관련 -->
+	<context:annotation-config/>
+	<!-- 저 폴더안에 애들을 쫙 스캔해라. 내가 만든 컨트롤러를 알려준다.-->
+	<context:component-scan base-package="kr.co.hta.board.dao, kr.co.hta.board.service"/>
+		
+	<!-- mybatis 의 SqlSessionFactory 객체 빈으로 등록 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="cp"/>
+		<property name="configLocation" 
+		value="classpath:/META-INF/mybatis/mybatis-config.xml"/>
+		 <property name="mapperLocations">
+			<array>
+				<value>classpath:/META-INF/mybatis/mappers/book.xml</value>
+			</array>
+		</property> 
+	</bean>
+	<!-- mybaits 특정 하나만 골라서 객체를 생성시키는 방법 -->
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+		<property name="mapperInterface" value="kr.co.hta.board.dao.BookDao"/>
+	</bean>
+	
+	
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

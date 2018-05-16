@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- 설정보다는 관례를 지켜라 CoC -->
+  <!-- Dao Interface 전체 경로를 지정해줘야한다. -->
+<mapper namespace="kr.co.hta.board.dao.BoardDao">
+	<!-- 메소드 이름과 같이 Id를 지정해줘야한다. User객체를 사용하기 위해서는 alias에서 지정해 줘야한다. -->
+	<select id="getBoards" resultType="Board">
+		
+	</select>
+</mapper>
