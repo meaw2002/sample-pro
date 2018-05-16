@@ -23,25 +23,5 @@ public class BoardServiceTest {
 	@Autowired
 	BoardService boardService;
 	
-	@Test
-	public void testConfig() {
-		assertThat(boardService, notNullValue());
-	}
-	@Test
-	public void test2() {
-		System.out.println("123");
-	}
-	@Test
-	public void testGetAllBoards() {
-		List<Board> boards = boardService.getAllBoards();
-		
-		assertThat(boards.size(), is(7));
-	}
 	
-	@Test
-	public void testGetBoardDetail() {
-		Board board = boardService.getBoardDetail(10);
-		
-		assertThat(board, notNullValue());
-	}
 }
