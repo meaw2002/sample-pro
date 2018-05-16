@@ -27,7 +27,10 @@ public class BoardServiceTest {
 	public void testConfig() {
 		assertThat(boardService, notNullValue());
 	}
-	
+	@Test
+	public void test2() {
+		
+	}
 	@Test
 	public void testGetAllBoards() {
 		List<Board> boards = boardService.getAllBoards();
